@@ -1,0 +1,61 @@
+Anotações e perguntas auxiliares.
+
+Anotação: Paradigma funcional
+variáveis mutáveis
+Race condition é um problema de concorrência comum em
+programação concorrente N threads modificam o mesmo recurso
+simultaneamente gerando resultados inesperados.
+(condição de impasse) Deadlock condition é a dependência s
+
+###########
+
+Chat GPT: qual é definição de "ator" em engenharia de software ?
+
+Em engenharia de software, especialmente no contexto de análise
+e projeto de sistemas, um "ator" é uma entidade que interage com
+o sistema sendo desenvolvido. Atores podem ser pessoas, sistemas
+externos, ou qualquer outra entidade que troque informações com o
+sistema. O conceito é amplamente utilizado em várias metodologias
+de desenvolvimento de software, sendo particularmente proeminente
+em UML (Unified Modeling Language), onde é usado para ajudar a
+definir os requisitos do sistema.
+
+Atores desempenham um papel fundamental na modelagem de casos de uso,
+que são descrições de funcionalidades do sistema sob o ponto de
+vista do usuário. Eles são essenciais para entender o contexto em
+que o software operará, bem como suas interações e dependências
+com outros sistemas ou usuários. Aqui estão alguns pontos chave
+sobre atores em engenharia de software: Características dos Atores
+
+    Externos ao Sistema: Atores são, por definição, externos
+    ao sistema que está sendo analisado ou desenvolvido. Eles
+    representam as fontes ou destinos das interações do sistema,
+    mas não são parte do sistema em si.  Interagem com o Sistema:
+    Atores podem enviar ou receber informações, iniciar processos
+    ou ser o destino dos resultados dos processos do sistema.
+    Podem Ser Humanos ou Sistemas: Enquanto muitas vezes pensamos
+    em atores como usuários humanos do sistema, eles também podem
+    ser outros sistemas, dispositivos, ou até mesmo organizações
+    com as quais o sistema interage.
+
+Tipos de Atores
+
+    Primários: São aqueles que têm uma meta ou necessidade que
+    o sistema deve satisfazer. Eles iniciam a interação com o
+    sistema para alcançar um objetivo.  Secundários: São atores
+    que o sistema necessita para alcançar uma meta ou completar
+    um processo, mas que não são o foco principal da interação.
+    Off-stage: Atores que têm interesse no comportamento do sistema,
+    mas que não interagem diretamente com ele. Eles são importantes
+    para considerar em análises mais amplas do ambiente do sistema.
+
+Uso de Atores
+
+    Casos de Uso: Atores são cruciais na modelagem de casos de
+    uso, que descrevem como as metas dos atores são alcançadas
+    com a ajuda do sistema. Os casos de uso fornecem uma maneira de
+    capturar os requisitos funcionais do sistema.  Diagramas de Casos
+    de Uso: Em UML, os atores são frequentemente representados em
+    diagramas de casos de uso, onde são ilustrados como bonecos
+    de palito interagindo com o sistema através de linhas que
+    conectam aos casos de uso relevantes.
