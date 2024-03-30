@@ -1,6 +1,10 @@
 // Responsabilidade única
 // Um módulo (um arquivo fonte) deve ser responsável por um ator.
-// Ator - 
+// Combate-se as famosas "Classes faz tudo"
+
+/* Classes menores e organizadas são mais fáceis de pesquisar
+ * que monolíticas. Menos acoplamento por dependências para cada
+ * classe já que são pequenas e resposáveis por uma coisa.*/
 
 class Funcionario
 {
@@ -95,5 +99,59 @@ class BoletoRefatorado
     return boletoTexto;
   }
 
+};
+
+// OUTRO EXEMPLO
+
+interface IProduto
+{
+  id: number;
+  nomeProduto: string;
+};
+
+/* simples definição em estrutura de dado abstrato */
+class Produto implements IProduto
+{
+  protected id: number;
+  protected nomeProduto: string;
+
+  constructor( id:number, nome:string )
+  {
+    this.id = id;
+    this.nomeProduto = nome;
+  }
+
+  // separando responsabilidades ! Removendo métodos abaixo:
+
+  public ObterPorId( pedidos: Produto[] ): void
+  {}
+
+  public ObterPorNome( pedidos: Produto[] ): void
+  {}
+
+  public Salvar(): void
+  {}
+};
+
+class Pedido
+{
+  protected produtos: IProduto[]
+
+  constructor( produtos: IProduto[] )
+  {
+    this.produtos = produtos;
+  }
+
+  public ObterProdutoPorId(): void
+  {}
+
+  public ObterProdutoPorNome(): void
+  {}
+};
+
+class ProdutoRepositorio
+{
+  public salvarProduto( produto: IProduto )
+  {}
 };
 
