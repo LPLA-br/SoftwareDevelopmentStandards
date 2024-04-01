@@ -103,41 +103,54 @@ class BoletoRefatorado
 
 // OUTRO EXEMPLO
 
-interface IProduto
+/* PROTECTED E PRIVATE QUEBRAM CONTRATOS !
+interface IProducto
 {
   id: number;
-  nomeProduto: string;
+  nomeProducto: string;
 };
+*/
 
-/* simples definição em estrutura de dado abstrato */
-class Produto implements IProduto
+abstract class AProducto
 {
   protected id: number;
-  protected nomeProduto: string;
+  protected nomeProducto: string;
 
   constructor( id:number, nome:string )
   {
     this.id = id;
-    this.nomeProduto = nome;
+    this.nomeProducto = nome;
+  }
+};
+
+
+/* simples definição em estrutura de dado abstrato */
+class Producto extends AProducto
+{
+
+  constructor( id:number, nome:string )
+  {
+    super( id, nome );
   }
 
   // separando responsabilidades ! Removendo métodos abaixo:
 
-  public ObterPorId( pedidos: Produto[] ): void
+  public ObterPorId( pedidos: Producto[] ): void
   {}
 
-  public ObterPorNome( pedidos: Produto[] ): void
+  public ObterPorNome( pedidos: Producto[] ): void
   {}
 
   public Salvar(): void
   {}
 };
 
-class Pedido
+//(Pedido)
+class Requisicao
 {
-  protected produtos: IProduto[]
+  protected produtos: AProducto[]
 
-  constructor( produtos: IProduto[] )
+  constructor( produtos: AProducto[] )
   {
     this.produtos = produtos;
   }
@@ -151,7 +164,9 @@ class Pedido
 
 class ProdutoRepositorio
 {
-  public salvarProduto( produto: IProduto )
-  {}
+  public salvarProduto( produto: AProducto )
+  {
+    console.log( `${produto} salvo` );
+  }
 };
 
