@@ -1,0 +1,14 @@
+{
+  "name": "padroesdesign",
+  "version": "0.0.1",
+  "description": "<p>     Esta parte contém simples exemplos de     emprego dos padrões de design mais     usados pela engenharia de software. </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LPLA-br",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  }
+}
