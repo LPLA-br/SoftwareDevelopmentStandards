@@ -12,88 +12,78 @@
  * que retorna por omissão um objeto ProdutoConcreto
 * */
 
-
 //Produto Abstrações
-interface IVeiculo
+interface IButton
 {
-  velocidadeMaxima:number;
-  razaoAceleracao:number;
-  
-  acelerar(): void;
-  desacelerar(): void;
-};
-
-abstract class AVeiculo
-{
-  protected velocidadeMaxima: number;
-  protected razaoAceleracao: number;
-
-  constructor( velMaxima: number, razaoAceleracao:number )
-  {
-    this.velocidadeMaxima = velMaxima;
-    this.razaoAceleracao = razaoAceleracao;
-  }
-
-  public abstract acelerar(): void;
-  public abstract desacelerar(): void;
+  render(): void;
+  onClick(): void;
 }
 
-//Produtos concretos
-class Chevette implements IVeiculo
+//Produtos Concretos
+class BotaoGTK implements IButton
 {
-  public velocidadeMaxima: number;
-  public razaoAceleracao: number;
+  public render(): void
+  {
+    console.log('<object class="GtkButton"></object>');
+  }
 
+  public onClick(): void
+  {
+
+  }
+
+}
+
+class BotaoHTML implements IButton
+{
+  public render(): void
+  {
+    console.log("<button></button>");
+  }
+
+  public onClick(): void
+  {
+
+  }
+
+}
+
+//criador abstrato
+abstract class DialogCreator
+{
+
+  public abstract criarBotao(): IButton
+}
+
+//criadores concretos herdeiros
+class DialogoJanela extends DialogCreator
+{
   constructor()
   {
-    this.velocidadeMaxima = 150;
-    this.razaoAceleracao = 10;
+    super();
   }
 
-  public acelerar(): void
+  public criarBotao(): IButton
   {
-    //
-  }
-
-  public desacelerar(): void
-  {
-    //
+    return new BotaoGTK();
   }
 }
 
-class Ferrari implements IVeiculo
+class DialogoWeb extends DialogCreator
 {
-  public velocidadeMaxima: number;
-  public razaoAceleracao: number;
-
   constructor()
   {
-    this.velocidadeMaxima = 320;
-    this.razaoAceleracao = 100;
+    super();
   }
 
-  public acelerar(): void
+  public criarBotao(): IButton
   {
-    //
-  }
-
-  public desacelerar(): void
-  {
-    //
+    return new BotaoHTML();
   }
 }
 
-//Criador
-class Autodromo
-{
-  public novaFerrari(): IVeiculo
-  {
-    return new Ferrari();
-  }
-
-  public novoChevette(): IVeiculo
-  {
-    return new Chevette();
-  }
-}
+const a = new DialogoJanela().criarBotao();
+const b = new DialogoWeb().criarBotao();
+a.render();
+b.render();
 

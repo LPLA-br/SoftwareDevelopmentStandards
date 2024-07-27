@@ -43,7 +43,7 @@ class PessoaJuridica implements IPessoaJuridica
 
   constructor( cnpj: string )
   {
-    this.cpnj = cnpj;
+    this.cnpj = cnpj;
   }
 
   public getCnpj(): string
@@ -73,7 +73,7 @@ class FabricaPessoas implements IFabricaPessoas
   constructor()
   {}
 
-  public criarPessoaJuridica( cnpj:string ): IPessoaFisica
+  public criarPessoaJuridica( cnpj:string ): IPessoaJuridica
   {
     return new PessoaJuridica( cnpj );
   }

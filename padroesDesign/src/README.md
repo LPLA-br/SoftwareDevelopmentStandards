@@ -6,7 +6,7 @@
     usados pela engenharia de software.
 </p>
 
-# CLASSIFICAÇÃO DE PADRÕES COMUNS
+# CLASSIFICAÇÃO DE PADRÕES
 
 1. Padrões Criacionais
     1. Método fábrica
@@ -34,8 +34,24 @@
     9. Método de modelo (template method)
    10. Visitante (Visitor)
 
+# PADRÕES MAIS SIMPLES E COMUNS
+
+Padrões mais simples e mais comuns:
+
+<ul>
+    <li>Abstract Factory (95) </li>
+    <li>Factory Method (112)  </li>
+    <li>Adapter (140)         </li>
+    <li>Composite (160)       </li>
+    <li>Decorator (170)       </li>
+    <li>Observer (274)        </li>
+    <li>Strategy (292)        </li>
+    <li>Template Method (301) </li>
+</ul>
 
 ## fontes úteis:
 
 <a href="https://refactoring.guru/design-patterns"> refactoring.guru </a>
 <a href="https://www.oodesign.com"> oodesign.com </a>
+<p><cite>Padrões de projeto: soluções reutilizáveis de software orientado a objetos</cite></p>
+
