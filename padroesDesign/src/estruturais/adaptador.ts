@@ -5,6 +5,7 @@
  * esperada pelos clientes.
  * O Adapter permite que classes com interfaces incompatíveis
  * colaborem, o que, de outra forma, seria impossível.
+ * Camada de tradução.
  *
  * PARTICIPANTES:
  * Alvo/Target - Define a interface específica do domínio que
@@ -17,8 +18,8 @@
  *
  * COLABORAÇÕES
  * Clientes chamam operações em uma instância de Adapter.
- * Por sua vez, o adapter chama operações de Adaptee executânturos
- * da solicitação.
+ * Por sua vez, o adapter chama operações de Adaptee executaturos
+ * pela solicitação.
  *
  * Um adaptador de classe usa a herança múltipla para adaptar uma
  * interface a outra.
@@ -28,6 +29,7 @@
 
 // exemplo para briquedo infantil de peças que passam ou não.
 
+/** ADAPTEE */
 interface IFormaSocavelEmBuracosRedondos
 {
   getRaio(): number;
@@ -67,6 +69,7 @@ class Cubo
 }
 
 // classe intermediária que permite que o cubo adapte-se
+/** ADAPTER*/
 class AdaptarCubo implements IFormaSocavelEmBuracosRedondos
 {
   cubo: Cubo;
@@ -86,6 +89,7 @@ class AdaptarCubo implements IFormaSocavelEmBuracosRedondos
 
 }
 
+/** TARGET */
 class BuracoRedondo
 {
   protected raio: number;
