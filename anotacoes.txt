@@ -1,61 +1,235 @@
-Anotações e perguntas auxiliares.
+##############################
+#                            #
+# VISÃO AMPLA DOS PRINCÍPIOS #
+# E OU PADRÕES DE PROJETO    #
+#                            #
+##############################
 
-Anotação: Paradigma funcional
-variáveis mutáveis
-Race condition é um problema de concorrência comum em
-programação concorrente N threads modificam o mesmo recurso
-simultaneamente gerando resultados inesperados.
-(condição de impasse) Deadlock condition é a dependência s
+A TEORÍA VALE OURO !
+
+CARACTERÍSTICAS DETESTÁVEIS DO CÓDIGO
+DO PONTO DE VISTA HUMANO.
+  I. DIFICULDADE DE LER/ENTENDER
+    void (*(*f[]) ()) ();
+    matriz de tamanho indeterminado com ponteiros
+    para funções que retornam ponteiros para funções
+    que retornam tipo void.
+    Código C|javascript|C++|java em uma linha ...
+    Quem precisa de comentário para a função
+    fnts(int, int ,float, Produto, Negocio): Preco
+  II. ACOPLAMENTO
+    modifiquei aqui, surgiu 666 erros e avisos
+    no log do sistema. Dependências de concreto.
+    Não indicam a falta de modulariade, mas sim
+    o mau uso desta.
+  III. DIFICULDADE DE FAZER MANUTENÇÃO
+    As 69666 interações complexas entre funções|classes
+    complicaram|impossibilitaram a atualização das regras
+    de negócio.
+  IV. MÁ GESTÃO DE MEMÓRIA
+    HUMM testes demonstraram que a array quase nunca cresce
+    acima de 1000 elementos. Vou alocar 1.000.000.000 só
+    para garantir.
+    free() ? sem nem o que é isso.
+  V. DUPLICAÇÃO DE CÓDIGO
+      printf("Nome:%s ", nome);
+      printf("Idade:%s ", idade);
+      printf("Peso:%s ", peso);
+    aparece
+    69.000.000.000 vezes no código
+  VI. COMPLEXIDADE ONDE NÃO SE É NECESSÁRIA
+    Vou aplicar algoritmo hiperdimensional super hiper mega blaster
+    com lógica Girolaniana com paralelismo avançado de divisão
+    baseada na teoria da divisão de estados elentares hiperfricionantes
+    de oitava geração para ordenar o array que nunca passa de 10 elemementos.
 
 ###########
 
-Chat GPT: qual é definição de "ator" em engenharia de software ?
+KISS Keep It Simple, Stupid !
+Uma filosofia UNIX
 
-Em engenharia de software, especialmente no contexto de análise
-e projeto de sistemas, um "ator" é uma entidade que interage com
-o sistema sendo desenvolvido. Atores podem ser pessoas, sistemas
-externos, ou qualquer outra entidade que troque informações com o
-sistema. O conceito é amplamente utilizado em várias metodologias
-de desenvolvimento de software, sendo particularmente proeminente
-em UML (Unified Modeling Language), onde é usado para ajudar a
-definir os requisitos do sistema.
+###########
 
-Atores desempenham um papel fundamental na modelagem de casos de uso,
-que são descrições de funcionalidades do sistema sob o ponto de
-vista do usuário. Eles são essenciais para entender o contexto em
-que o software operará, bem como suas interações e dependências
-com outros sistemas ou usuários. Aqui estão alguns pontos chave
-sobre atores em engenharia de software: Características dos Atores
+FILOSOFIA UNIX
 
-    Externos ao Sistema: Atores são, por definição, externos
-    ao sistema que está sendo analisado ou desenvolvido. Eles
-    representam as fontes ou destinos das interações do sistema,
-    mas não são parte do sistema em si.  Interagem com o Sistema:
-    Atores podem enviar ou receber informações, iniciar processos
-    ou ser o destino dos resultados dos processos do sistema.
-    Podem Ser Humanos ou Sistemas: Enquanto muitas vezes pensamos
-    em atores como usuários humanos do sistema, eles também podem
-    ser outros sistemas, dispositivos, ou até mesmo organizações
-    com as quais o sistema interage.
+###########
 
-Tipos de Atores
+PILARES PARADIGMÁTICOS DA ORIENTAÇÃO A OBJETOS
 
-    Primários: São aqueles que têm uma meta ou necessidade que
-    o sistema deve satisfazer. Eles iniciam a interação com o
-    sistema para alcançar um objetivo.  Secundários: São atores
-    que o sistema necessita para alcançar uma meta ou completar
-    um processo, mas que não são o foco principal da interação.
-    Off-stage: Atores que têm interesse no comportamento do sistema,
-    mas que não interagem diretamente com ele. Eles são importantes
-    para considerar em análises mais amplas do ambiente do sistema.
+ABSTRAÇÃO
+  Traduzir subconjunto de informações e comportamentos
+  da vida real para código no sistema. Minimundo e suas
+  subdivisões.
 
-Uso de Atores
+ENCAPSULAMENTO
 
-    Casos de Uso: Atores são cruciais na modelagem de casos de
-    uso, que descrevem como as metas dos atores são alcançadas
-    com a ajuda do sistema. Os casos de uso fornecem uma maneira de
-    capturar os requisitos funcionais do sistema.  Diagramas de Casos
-    de Uso: Em UML, os atores são frequentemente representados em
-    diagramas de casos de uso, onde são ilustrados como bonecos
-    de palito interagindo com o sistema através de linhas que
-    conectam aos casos de uso relevantes.
+HERANÇA
+
+POLIMORFISMO
+
+
+###########
+
+SOLID by Robert C. Martin (Uncle Bob)
+
+Single Responsibility Principle
+Open/Closed Principle
+Liskov Substitution Principle
+Interface Segregation Principle
+Dependency Inversion Principle (MAIS IMPORTANTE)
+  1.1 Por parâmetro de construtor via interface
+    1.1.1 Não funciona como o esperado. Depende de
+          Implementação concreta e não de abstração
+          impossibilitando alteração para outra classe.
+          Vide PADRÃO ADAPTADOR em 1.8
+  1.2 -
+  1.3 Interface: definição abstrata de como classe deve
+      ser construida para ser compatível.
+  1.4 Testes e facilitação de Mocks ( e dos próprios testes)
+  1.5 Módulos de alto nível não devem depender de
+      módulos de baixo nível, mas sim de abstrações
+      contratuais.
+  1.6 Abstrações não devem depender de detalhes de
+      implementação.
+  1.7 new dentro de construtor -> acomplamento concretado
+    1.7.1 Teste de Integração
+    1.7.2 Veneno de teste unitário
+  1.8 Padrão de projeto Adaptador se beneficia muito
+    1.8.1 DependênciaX ou DependênciaY, AdpatadorAbstrato, ClasseConsumidora
+    1.8.2 X Dependências que atendem de formas levemente diferente a necessidade
+          da classe consumidora.
+  1.9 Dependências múdam e muitas vezes são externas.
+
+
+###########
+
+DOMAIN DRIVEN DESIGN (projeto dirigido a domínio) Eric Evans
+Classes, Métodos e Atributos devem bater com o domínio de negócio.
+
+Entender o domínio de negócios
+  DOMÍNIO
+    Área lógica que define o problema que queres resolver.
+    Conhecida também como minimundo ou delimitação.
+    Exemplos:
+      Empreendimento:
+        Varejo = (Inventário, Compras, Recursos Humanos, Financeiro)
+        Educação = (Questionários, Pontuações, Usuários)
+        Bancário = (Núcleo bancário, Núcleo produto, Risco, Tesouro, AntiFraude)
+  ENTIDADE
+    São objetos de domínio definidos por identificadores únicos
+    e não por atributos.
+    São o bloco de construção da modelagem de domínio e são o primeiro
+    lugar onde devemos pensar em por a lógica de domínio.
+    Alerta a requisitos que correspondem objetos por atributos.
+    EXAMPLES:
+      User, Costumer, Organization, Job, Message, Notification
+  VALUE OBJECT
+  Objeto imutável que tem atributos, entretanto não tem identidade distinta.
+    Name, Address, JobTitle, MessageObject, NotificationReason
+  UUID para identificação única universal
+  AGREGADOS
+  FÁBRICAS
+  EVENTOS DE DOMÍNIO
+  SERVIÇOS
+  REPOSITÓRIOS
+LINGUAGEM UBÍQUA
+  O desenvolvedor e usuário deve falarem a "mesma linguagem", o desenvolvedor usa 
+  esta linguagem para atingir a definição de nome de Clases seus Atributos e Métodos
+  (Consumidor pode ser cliente, pode ser usuário)
+BOUNDED CONTEXTS | CONTEXTOS LIMITADOS
+  Limite lógico em torno do código que representa a solução para aquele domínio.
+  Solução do problema descrito pelo domínio.
+  Define-se em termos de: organização do time, base de código e banco de dados,
+  padronizar processo desenvolvimento de acordo com contexto, estabelecimento
+  de práticas sólidas de CI/CD e DEVOPS para manutenção da consistência.
+DESIGN ESTRATÉGICO
+LAYERED ARCHITECTURE
+  DDD recomenda arquitetura em camadas com a ideia principal de manter o
+  conhecimento de domínio focado e não espalhado através de diferentes
+  componentes como User Interface, Base de Dados, Camada de Persistência.
+
+
+###########
+
+OBJECT CALISTHENICS by Jeff Bay
+
+Ajudando a aproximar-se dos pilares OOP
+e princípios SOLID.
+
+1. UM NÍVEL DE IDENTAÇÃO POR MÉTODO
+  1.1 Complexidade ciclomática (Thomas J. McCabe)
+    1.1.1 Número de caminhos possíveis
+  1.2 no máximo 3
+
+2. não utilizar else
+  2.1 Complexidade ciclomática
+
+3. ENCAPSULE TODOS OS TIPOS PRIMITIVOS E STRINGS
+  3.1 Primitivos não possuem comportamentos.
+  3.2 Primitivos são a base da representação de dados.
+  3.3 Toda informação da vida real possui especificidades.
+    3.3.1 CPF, CNPJ, Email, Datas de nascimento, valores monetários e etc. possuem
+          restrições de domínio e não tratadas por tipos primitivos.
+  3.4 Diminui reutilização de código enquanto promove duplicação de código.
+  3.5 Impossibilidade/dificuldade de escrita de testes unitários.
+  3.6 Aumento do acoplamento
+  3.7 Impossível utilizar modelagem tática do DDD (Value Objects)
+  3.8 Primitivos ainda utilizáveis para informação de carga informacional/comportamental
+      mínima em classes EX: booleano.
+
+4. ENVOLVA COLEÇÕES EM CLASSES
+
+5. USE APENAS UM PONTO POR LINHA
+
+6. NÃO ABREVIE NOMES DE VARIÁVEIS E MÉTODOS (CLEAN CODE ALSO)
+
+7. MANTER ENTIDADES PEQUENAS
+  7.1 grandes entidades são possível indício de violação
+      da Single Responsibility Principle (Solid)
+
+8. NENHUMA CLASSE COM MAIS DE DUAS VARIÁVEIS DE INSTÂNCIA.
+
+9. NÃO USAR GETTERS/SETTERS
+  9.1 Getter e Setter fere Encapsulamento.
+    9.1.1 Getter/Setter não é diferente de acesso público
+          a atributo. Simples violação do encapsulamento.
+  9.2 Separação de comportamento da classe.
+  9.3 Domínio e classes anêmicas (DDD)
+  9.4 Fere o princípio: Tell, Don't Ask
+    9.4.1 Aumento de acomplamento quando o código cliente
+          pergunta "Get()" a classe servente.
+  9.5 Problema de Semântica - Linguagem Ubíqua (DDD)
+  9.6 Objetos de estados inconsistentes
+  9.7 Leitura por getter útil para leitura não relacionada
+      à lógica de negócio.
+
+###########
+
+Tell, don't ask
+
+Product()
+x = new Product()
+// código cliente -> acoplamento sendo aedificado !
+x.get_price() //pergunta
+//código desconto
+Perceba indicativo de anemia na classe Product
+----------------------
+// client code
+x.applyDiscount(...) //faça
+
+Dai Product pode depender de classes com
+regras de negócio para desconto ...
+Vide inversão de dependência
+
+###########
+
+classe anêmica
+Falta de comportamento restritivo à violação dos limites
+impostos por regra de negócio obtida da realidade.
+
+entidade não são tabelas no banco de dados
+são os guardiões das regras de negócio.
+
+método joga exception para fora
+em caso de violação de regra de negócio.
+
