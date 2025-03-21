@@ -35,8 +35,7 @@ DO PONTO DE VISTA HUMANO.
       printf("Nome:%s ", nome);
       printf("Idade:%s ", idade);
       printf("Peso:%s ", peso);
-    aparece
-    69.000.000.000 vezes no código
+    aparece 69.000.000.000 vezes no código
   VI. COMPLEXIDADE ONDE NÃO SE É NECESSÁRIA
     Vou aplicar algoritmo hiperdimensional super hiper mega blaster
     com lógica Girolaniana com paralelismo avançado de divisão
@@ -50,22 +49,94 @@ Uma filosofia UNIX
 
 ###########
 
-FILOSOFIA UNIX
+FILOSOFIA UNIX 1969 1970s 1980s
+Ken Thompson  - Main programator of UNIX
+Dennis Richie - Ĉreator of C language
+Brian Kernighan - Coauthor AWK, AMPL
+Doug McIlroy - Unix pipelines
+
+  I.Faça programas que façam uma coisa e que a façam
+  bem feita. Surgindo novos trabalhos, não cresca o
+  programa velho em novas funcionalidades.
+
+  II.A saída de um programa pode/deve ser a entrada de outro.
+  Não sobrecarregue a saída com informações estranhas.
+  Evite formatos estritamente colunares ou binários. Não 
+  insista em entrada interativa.
+
+  III.Projete e construa software para serem testados cedo
+  idealmente em semanas. NÂO hesite em refatorar partes
+  defeituosas.
+
+  IV.Use ferramentas em vez de ajuda não qualificada para
+  facilitar a tarefa de programação, mesmo que tenhas que
+  desenvolvê-las a mão no processo.
+
+Síntese posterior:
+  Escreva programas que façam uma coisa e a façam bem.
+  Escreva programas para trabalharem juntos.
+  Escreva programas para lidar com fluxos de texto, porque essa é uma interface universal.
+
+Ideias satélites:
+  Regra da modularidade: escreva partes simples conectadas por interfaces limpas.
+  Regra da clareza: clareza é melhor que inteligência.
+  Regra da composição: projete programas para serem conectados a outros programas.
+  Regra da separação: separe a política do mecanismo; separe as interfaces dos mecanismos.
+  Regra da simplicidade: projete para simplicidade; adicione complexidade somente onde for necessário.
+  Regra da parcimônia: escreva um programa grande somente quando estiver claro pela demonstração que nada mais servirá.
+  Regra da transparência: projete para visibilidade para facilitar a inspeção e a depuração.
+  Regra da robustez: robustez é filha da transparência e da simplicidade.
+  Regra da representação: dobre o conhecimento em dados para que a lógica do programa possa ser estúpida e robusta.
+  Regra da menor surpresa: no design de interface, sempre faça a coisa menos surpreendente.
+  Regra do silêncio: quando um programa não tem nada de surpreendente a dizer, ele não deve dizer nada.
+  Regra de Reparo: Quando você tiver que falhar, falhe ruidosamente e o mais rápido possível.
+  Regra de Economia: O tempo do programador é caro; conserve-o em vez do tempo da máquina.
+  Regra de Geração: Evite hacking manual; escreva programas para escrever programas quando puder.
+  Regra de Otimização: Prototipar antes de polir. Faça funcionar antes de otimizar.
+  Regra de Diversidade: Desconfie de todas as alegações de "um caminho verdadeiro".
+  Regra de Extensibilidade: Projete para o futuro, porque ele chegará mais cedo do que você pensa.
+
+https://cscie2x.dce.harvard.edu/hw/ch01s06.html
 
 ###########
 
 PILARES PARADIGMÁTICOS DA ORIENTAÇÃO A OBJETOS
 
 ABSTRAÇÃO
-  Traduzir subconjunto de informações e comportamentos
-  da vida real para código no sistema. Minimundo e suas
-  subdivisões.
+  Modelagem de relações, atributos e interações entre
+  entidades como classes em um sistema.
 
 ENCAPSULAMENTO
+  Controle de acesso a detalhes internos da implementação
+  da classe.
+  Ocultação do estado interno da classe liberável apenas por
+  métodos públicos.
+  Atributos e Métodos. Comumente se manifesta
+  em tres níveis:
+
+  |-----------EXTERNO-HERDEIRAS-SELF/THIS
+  PÚBLICO:    r-x     rwx       rwx
+  PROTEGIDO:  ---     rwx       rwx
+  PRIVADO:    ---     ---       rwx
+  
+  Evita Interferência externa
 
 HERANÇA
+   Reuso de código por meio da extensão de classe ou
+   classe abstrata.
+   Classe herdeira é um superconjunto com comportamentos
+   iguais ou semelhantes à classe mãe e com atributos 
+   da mãe mais outros se necessário.
 
-POLIMORFISMO
+
+POLIMORFISMO consequência da herança OU resultado da implementação de interfaces
+  Sobrescrita de método para correção/adaptação de comportamento.
+    Concordância com uma interface abstrata que determina
+    entrada e saída. Comportamento varia, mas o resultado
+    é aproximadamente o mesmo.
+  Sobrecarga de operadores como funcionalidade
+  abstracional da linguagem de acordo com o tipo abstrato
+  criado pela classe EX: String a = "Hello"; a + " World";
 
 
 ###########
