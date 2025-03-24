@@ -119,7 +119,9 @@ ENCAPSULAMENTO
   PROTEGIDO:  ---     rwx       rwx
   PRIVADO:    ---     ---       rwx
   
-  Evita Interferência externa
+  Evita Interferência externa.
+  Classes não devem conhecer detalhes implementacionais
+  das outras.
 
 HERANÇA
    Reuso de código por meio da extensão de classe ou
@@ -143,34 +145,98 @@ POLIMORFISMO consequência da herança OU resultado da implementação de interf
 
 SOLID by Robert C. Martin (Uncle Bob)
 
-Single Responsibility Principle
-Open/Closed Principle
-Liskov Substitution Principle
-Interface Segregation Principle
-Dependency Inversion Principle (MAIS IMPORTANTE)
-  1.1 Por parâmetro de construtor via interface
-    1.1.1 Não funciona como o esperado. Depende de
-          Implementação concreta e não de abstração
-          impossibilitando alteração para outra classe.
-          Vide PADRÃO ADAPTADOR em 1.8
-  1.2 -
-  1.3 Interface: definição abstrata de como classe deve
-      ser construida para ser compatível.
-  1.4 Testes e facilitação de Mocks ( e dos próprios testes)
-  1.5 Módulos de alto nível não devem depender de
-      módulos de baixo nível, mas sim de abstrações
-      contratuais.
-  1.6 Abstrações não devem depender de detalhes de
-      implementação.
-  1.7 new dentro de construtor -> acomplamento concretado
-    1.7.1 Teste de Integração
-    1.7.2 Veneno de teste unitário
-  1.8 Padrão de projeto Adaptador se beneficia muito
-    1.8.1 DependênciaX ou DependênciaY, AdpatadorAbstrato, ClasseConsumidora
-    1.8.2 X Dependências que atendem de formas levemente diferente a necessidade
-          da classe consumidora.
-  1.9 Dependências múdam e muitas vezes são externas.
+SINGLE RESPONSIBILITY PRINCIPLE
+  1.1 Classe deve ter comportamentos correspondentes ao que se é esperado
+      da entidade abstraida da realidade.
+  1.2 Violação do princípio decorre de comportamentos que escapam do
+      escopo operacional da entidade ou do escopo demasiadamente amplo
+      da entidade incorretamente abstraida da realidade.
+  1.3 A classe não deve ter mais de um motivo para mudar.
+  1.4 Comportamento que não bate com o escopo atuacional da entidade que o possui pode
+      aparecer de forma aproximadamente semelhante em outras entidades
+      indicando a necessidade daquela parte tornar-se uma nova entidade.
+  1.5 Problemas de abstração.
+  1.6 Uso da injeção de dependências
+    1.6.1 Composição de objetos
+  1.7 Padrão de projeto fachade
 
+
+OPEN/CLOSED PRINCIPLE
+  1.1 Classes devem ser abertas para extensão e fechadas para modificão (recomendação reforçada)
+
+LISKOV SUBSTITUTION PRINCIPLE
+  1.1 Classes derivadas (descndentes) são substituíveis por suas base (ascendentes)
+  1.2 Classes derivadas nunca devem infrigir comportamentos ou definições de tipo de
+  classe base ou da interface a qual elas implementam
+  1.3 Se parece com um pato, faz barulho de pato, mas precisa de baterias -> abstração errada !
+    1.3.1 Problema crítico da arquitetura do sistema
+  1.4 Condições
+    1.4.1 PRÉ-CONDIÇÃO: subclasse não pode exigir mais que a base exigia
+          Herança: regras sólidas das classes base.
+          EX: ContaBancaria verifica, em deposito(), número positivo para depósito
+              ContaPoupanca sobrescreve ditando que deposito() deve ser maior que 10 contos...
+              Precondição fundamental da classe base foi sobrescrita ampliando restrição quebrando código
+              Substituir base por derivada quebra, cuidado com herança !
+    1.4.2 PÓS-CONDIÇÃO: SUBCLASSE NÃO PODE REDUZIR GARANTIAS PROVIDAS PELA CLASSE BASE
+          após a execução do método.
+          EX: Retorno de relatórios: pdf→path, csv→path e toCloud→url
+              problema: toCloud não salva localmente, envia para nuvem !
+              path de arquivo e url POST não são a mesma coisa, polimorfismo não aplicável!
+              PROBLEMA DE ABSTRAÇÃO → SEGREGAÇÃO DE INTERFACE aplicável e necessária
+              Não retorne comportamentos inesperados ! Atenção com os famigerados tipos primitivos!
+    1.4.3 INVARIÂNCIA: SUBCLASSE NÃO PODE ALTERAR CONDIÇÕES INTERNAS QUE A CLASSE BASE DEFINIRA COMO FUNDAMENTAIS
+          mantia constante.
+          EX: ContaBancaria.sacar() verifica valor maior que zero e menor que ou igual ao total disponível
+              Regras invariáveis (constantes).
+              ContaCorrente herda de ContaBancaria sobrescreve comportamento de sacar()
+              determinado que quantia não deve ser <= 0 e que não deve ser maior que fundos disponíveis
+              Observe a re-escrita e quebra da invariância.
+    1.5 Código cliente não deve depender
+  
+
+INTERFACE SEGREGATION PRINCIPLE
+  1.1 Tem início no processo de abstração
+    1.1.1 O processo de abstração é o mais importante
+  1.2 códigos cliente não devem depender de métodos que eles não usam.
+    1.2.1 o problema tem manifestação principal na expanção de
+          interfaces genéricas (de escopo abstracional amplo).
+    1.2.1 A segmentação é orientada na identificação de especificidades
+          abstracionais inicialmente implícitas.
+  1.3 A solução quase ideal do problema vem de uma modelagem mais precisa
+      dos contrados/interfaces, ou seja de uma elaboração precisa da abstração.
+
+DEPENDENCY INVERSION PRINCIPLE
+  1.1 Módulos de alto nível não devem depender de
+      módulos de baixo nível, mas sim de abstrações
+      contratuais. Redução de acoplamento.
+  1.2 Interfaces são contratos que definem métodos abstratos
+      que devem se implementados por classes se estas quiserem
+      ser usadas por classes clientes.
+      1.2.1 Interfaces geralmente exigem compliance com nome de método,
+            parâmetros e tipos, e retornos criando a dependência de recebimento
+            de instância de classe concreta ! Há polimorfismo, só que mais restrito.
+  1.3 Testes e facilitação de Mocks ( e dos próprios testes)
+  1.4 Por parâmetro de construtor como interface
+    1.4.1 Não funciona como o esperado pois depende de
+          implementação concreta e não de abstração
+          impossibilitando alteração para outra classe.
+          Vide padrão de projeto: ADAPTADOR em 1.8
+  1.5 Abstrações não devem depender de detalhes de
+      implementação.
+  1.6 instânciar dependência dentro do construtor = ALTO ACOPLAMENTO!
+    1.6.1 Teste de Integração
+    1.6.2 Veneno de Teste Unitário
+  1.7 Padrão de projeto ADAPTADOR aumenta a inversibilidade de dependência
+    1.7.1 DependênciaX ou DependênciaY, Adaptador(es),InterfaceAdaptador, ClasseConsumidora
+    1.7.2 N Dependências que atendem de formas levemente diferente a necessidade
+          da classe consumidora.
+    1.7.3 Interface e implementada por um adaptador que é cliente de dependência externa
+          variável e imprevisível.
+    1.7.4 Exemplo: ProcesadorPagamento() deve ser indiferente de implementação
+          da dependẽncia externa de plataforma de pagamentos!
+    1.7.5 ADAPTADOR é também o padrão que permite colaboração com sistemas e ou
+          classes externas.
+    1.7.6 Classe adaptadora conhecida também como Gateway
 
 ###########
 
@@ -230,9 +296,9 @@ e princípios SOLID.
 1. UM NÍVEL DE IDENTAÇÃO POR MÉTODO
   1.1 Complexidade ciclomática (Thomas J. McCabe)
     1.1.1 Número de caminhos possíveis
-  1.2 no máximo 3
+  1.2 no máximo 3 níveis
 
-2. não utilizar else
+2. NÃO UTILIZAR ELSE
   2.1 Complexidade ciclomática
 
 3. ENCAPSULE TODOS OS TIPOS PRIMITIVOS E STRINGS
@@ -255,7 +321,7 @@ e princípios SOLID.
 6. NÃO ABREVIE NOMES DE VARIÁVEIS E MÉTODOS (CLEAN CODE ALSO)
 
 7. MANTER ENTIDADES PEQUENAS
-  7.1 grandes entidades são possível indício de violação
+  7.1 grandes entidades/classes são possível indício de violação
       da Single Responsibility Principle (Solid)
 
 8. NENHUMA CLASSE COM MAIS DE DUAS VARIÁVEIS DE INSTÂNCIA.
@@ -277,6 +343,7 @@ e princípios SOLID.
 ###########
 
 Tell, don't ask
+Mando fazer, não me importo como fazes !
 
 Product()
 x = new Product()
@@ -294,13 +361,33 @@ Vide inversão de dependência
 
 ###########
 
-classe anêmica
+CLASSE ANÊMICA
 Falta de comportamento restritivo à violação dos limites
 impostos por regra de negócio obtida da realidade.
 
-entidade não são tabelas no banco de dados
+Entidades não são tabelas no banco de dados
 são os guardiões das regras de negócio.
 
-método joga exception para fora
-em caso de violação de regra de negócio.
+Desvios do domínio da classe
+criam excessões que são jogadas para fora.
+
+Código Fornecedor
+Código Cliente
+
+Código cliente não deveria saber/tratar detalhes
+de classes fornecedoras sob risco de violar
+o pilar do encapsulamento.
+
+CONTRATOS
+Manifesta-se como interfaces sem implementação concreta
+ou classes abstratas extensíveis com implementação parcial.
+
+ESTRATÉGIA DE MODELAGEM DE ABSTRAÇÃO BOTTON UP
+Parte-se das entidades mais próximas dos dados primitivos
+mas que ainda possuem comportamentos que os caracterizam como
+superconjuntos. Sobe-se na hieraquia de entidades que
+são extraidas dos requisitos funcionais e do problema de
+negócio.
+
+float != valor monetário
 
