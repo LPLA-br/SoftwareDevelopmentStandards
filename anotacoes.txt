@@ -297,9 +297,15 @@ e princípios SOLID.
   1.1 Complexidade ciclomática (Thomas J. McCabe)
     1.1.1 Número de caminhos possíveis
   1.2 no máximo 3 níveis
+  1.3 Métodos que crescem seus níveis de identação provavelmente estão
+  acomulando muita responsabilidade e se tornando cada vez mais monlíticos.
 
 2. NÃO UTILIZAR ELSE
   2.1 Complexidade ciclomática
+  2.2 Exemplo: método calcularDesconto() if vip then 50% de desconto else normal 10% de desconto;
+  Pode ser criado duas classes: uma para DescontoVip e outra DescontoPadrao ambas compliantes de
+  interface IPoliticaDesconto.
+  2.3 Pode ser fonte de anemia de objetos e esforço pró procedimental.
 
 3. ENCAPSULE TODOS OS TIPOS PRIMITIVOS E STRINGS
   3.1 Primitivos não possuem comportamentos.
@@ -314,17 +320,41 @@ e princípios SOLID.
   3.8 Primitivos ainda utilizáveis para informação de carga informacional/comportamental
       mínima em classes EX: booleano.
 
-4. ENVOLVA COLEÇÕES EM CLASSES
+4. USE APENAS UM PONTO POR LINHA
+  4.1 Classes que fazem chamadas à entidades não imediatas a.b.c();
+  4.2 O objeto chamante conhece demais o ambiete.
+  4.3 Forte indicio de má distribuição de responsabilidades e violações do encapsulamento.
+  4.4 Lei de Demeter -> "talk only to your friends"
 
-5. USE APENAS UM PONTO POR LINHA
+5. NÃO ABREVIE NOMES DE VARIÁVEIS E MÉTODOS
+  5.1 Nomes de classes, métodos, atributos pode indicar:
+    5.1.1 Métodos de grande implementação com mais de uma responsabilidade.
+    5.1.2 Ausência de classe específica faz com que classe acomule responsabilidade que não
+    deveria lhe pertencer tornando seu nome mais rebuscado.
+    5.1.3 Métodos que poderiam ser segmentados em sub-partes mais especificas.
+    5.1.4 Nomes simples comumente associam-se com responsabilidade bem definda e única.
 
-6. NÃO ABREVIE NOMES DE VARIÁVEIS E MÉTODOS (CLEAN CODE ALSO)
+6. ENVOLVA COLEÇÕES EM CLASSES
+  6.0 Coleções/listas devem estar encapsuladas em uma classe especial.
+  6.1 Exemplo: Pedido possui uma lista de objetos Itens.
+  Pedido tem que manipular esta lista/coleção ele próprio
+  Exemplo: obterItens(), adicionarItens(), buscarIntem().
+  6.2 Solução concordante: Pedido <associa-se> ItensDoPedido <agrega> Item
+  6.3 Facilita testes unitários, refatorações e extenções.
 
-7. MANTER ENTIDADES PEQUENAS
-  7.1 grandes entidades/classes são possível indício de violação
+7. NENHUMA CLASSE COM MAIS DE DUAS VARIÁVEIS DE INSTÂNCIA.
+  7.1 Um atributo é o ideal, mais de um diminui a coesão da classe.
+  7.2 Os dois tipos de classes:
+    7.2.1 As que mantém o estado de uma variável/atributo.
+    7.2.2 As que coordenam duas variáveis/atributos separados.
+  7.3 Esta regra é um complemento à regra 3 pois o processo
+  para ser concordante com esta regra envolve o encapsulamento
+  de primitivos sem comportamento definido.
+
+8. MANTER ENTIDADES PEQUENAS
+  8.1 grandes entidades/classes são possível indício de violação
       da Single Responsibility Principle (Solid)
-
-8. NENHUMA CLASSE COM MAIS DE DUAS VARIÁVEIS DE INSTÂNCIA.
+  8.2 Regra 3 e 7 são úteis neste caso.
 
 9. NÃO USAR GETTERS/SETTERS
   9.1 Getter e Setter fere Encapsulamento.
