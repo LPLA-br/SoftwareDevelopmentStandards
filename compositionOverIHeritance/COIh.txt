@@ -1,0 +1,50 @@
+COMPOSIÇÃO SOBRE HERANÇA - SÍNTESE
+
+A Composição sobre a Herança permite
+reuso de código sem emprego da Herança.
+
+A Composição é uma relação mandatória entre classes
+expressa, em UML, por flexa de diamante negro.
+
+EXEMPLO:
+Classe "Jogador" não funciona propriamente sem "ControlesJogador"
+que manipula posição espacial em função da interação do jogador
+com o controle do jogo. Logo, instância de classe que permita
+tal controle no construtor de "Jogador" é mandatória.
+
+Pontos fortes da Composição
+· FLEXÍVEL (subistituibilidade)
+· MODULAR (contratos e compliance)
+· PROMOVE REUTILIZAÇÃO DE CÓDIGO SEM HERANÇA
+· MENOR ACOPLAMENTO (contratos e compliance)
+
+A Herança cria hierarquias de alta inflexibilidade
+com alto potêncial de violação do princípio OPEN/CLOSED.
+
+Alterações superiores na hierarquia resultam
+frequentemente em alterações em cascata.
+
+Alterações superiores permitem a existência de
+funcionalidades inúteis a algumas subclasses (reuso limitado).
+
+Grandes classes podem ser herdadas apenas para obtenção de um
+ou um punhado de funcionalidades simples (cenário onde TODAS
+funcionalidades virão) (problema Gorilla/Banana).
+
+Herança multipla pode criar problemas de ambiguidade em métodos ou
+atributos (diamond problem) exigindo regras complexas de resolução
+de conflitos de nomes.
+
+Herança dificulta testes unitários.
+
+Herança pode promover, em função da complexidade de domínio crescente, violação
+do princípio de substituição de Barbara Liskov.
+
+Entretanto, composição não é uma bala de prata, á problemas que são melhores resolvidos com
+a Herança. Logo, ambas são válidas.
+
+Pontos fortes da Herança
+· CONSISA
+· PERMITE POLIMORFISMO
+· FUNCIONA BEM EM DOMÍNIOS LOGICAMENTE LIMPOS (Subclasses extencionais).
+
